@@ -31,7 +31,9 @@ SECRET_KEY = 'django-insecure-sw%1@_g4=3z78m^vzsr1wegvi*j1z96=y_6vhwop4i_xoyb1ag
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ALLOW_ALL_ORIGINS = True
+X_FRAME_OPTIONS='*'
+CORS_ORIGIN_ALLOW_ALL=True
+CSRF_TRUSTED_ORIGINS=['http://127.0.0.1:8000/']
 
 
 # Application definition
@@ -51,10 +53,12 @@ INSTALLED_APPS = [
     'apps.products',
     'apps.carts',
     'apps.orders',
-    'apps.order_items'
+    'apps.order_items',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
